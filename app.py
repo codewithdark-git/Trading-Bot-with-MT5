@@ -38,6 +38,7 @@ else:
 symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm"]
 lot_size = 0.1
 max_open_trades_per_symbol = 3
+profile_in_usd = 10
 
 
 def get_data(symbol, timeframe, num_bars):
@@ -122,12 +123,19 @@ def create_order(symbol, lot_size, action):
     else:
         logging.info(f"Order sent successfully for {symbol}")
 
+def combined_strategy(df):
+    rsi_signal = rsi_strategy(df)
+    bb_signal = bollinger_bands_strategy(df)
+    if rsi_signal == bb_signal and rsi_signal is not None:
+        return rsi_signal
+    return None
+
 
 def close_profitable_positions(symbol):
     positions = mt5.positions_get(symbol=symbol)
     for pos in positions:
         profit = pos.profit
-        if profit > 10:  # Close only profitable positions
+        if profit >= profile_in_usd:  # Close only profitable positions
             order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
             price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(
                 symbol).ask
@@ -165,7 +173,7 @@ if __name__ == "__main__":
             logging.info(f"Running strategies for {symbol}")
 
             # Fetch data
-            df = get_data(symbol, mt5.TIMEFRAME_H1, 100)
+            df = get_data(symbol, mt5.TIMEFRAME_M2, 100)
 
             # Check the number of open positions for the symbol
             open_positions_count = get_open_positions_count(symbol)
@@ -173,10 +181,10 @@ if __name__ == "__main__":
 
             if open_positions_count < max_open_trades_per_symbol:
                 # Apply strategies
-                for strategy in [moving_average_crossover, rsi_strategy, macd_strategy, bollinger_bands_strategy,
-                                 breakout_strategy]:
-                    signal = strategy(df)
-                    if signal:
+                # for strategy in [moving_average_crossover, rsi_strategy, macd_strategy, bollinger_bands_strategy,
+                #                  breakout_strategy]:
+                signal = combined_strategy(df)
+                if signal:
                         create_order(symbol, lot_size, signal)
                         break  # Stop after the first valid signal to avoid multiple orders in one loop
 
@@ -184,7 +192,7 @@ if __name__ == "__main__":
             close_profitable_positions(symbol)
 
         # Wait for the next iteration
-        time.sleep(3600)  # Adjust as needed
+        time.sleep(60)  # Adjust as needed
 
     # Shutdown MT5 connection
     mt5.shutdown()
