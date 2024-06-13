@@ -35,8 +35,9 @@ else:
 
 
 # Define the symbols to trade
-symbols = ["EURUSDm", "XAUUSDm"]
+symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm"]
 lot_size = 0.1
+max_open_trades_per_symbol = 3
 
 
 def get_data(symbol, timeframe, num_bars):
@@ -122,31 +123,39 @@ def create_order(symbol, lot_size, action):
         logging.info(f"Order sent successfully for {symbol}")
 
 
-def close_all_positions(symbol):
+def close_profitable_positions(symbol):
     positions = mt5.positions_get(symbol=symbol)
     for pos in positions:
-        order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
-        price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(
-            symbol).ask
-        request = {
-            "action": mt5.TRADE_ACTION_DEAL,
-            "symbol": pos.symbol,
-            "volume": pos.volume,
-            "type": order_type,
-            "position": pos.ticket,
-            "price": price,
-            "deviation": 10,
-            "magic": 234000,
-            "comment": "Close position",
-            "type_time": mt5.ORDER_TIME_GTC,
-            "type_filling": mt5.ORDER_FILLING_IOC
+        profit = pos.profit
+        if profit > 10:  # Close only profitable positions
+            order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
+            price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(
+                symbol).ask
+            request = {
+                "action": mt5.TRADE_ACTION_DEAL,
+                "symbol": pos.symbol,
+                "volume": pos.volume,
+                "type": order_type,
+                "position": pos.ticket,
+                "price": price,
+                "deviation": 10,
+                "magic": 234000,
+                "comment": "Close position",
+                "type_time": mt5.ORDER_TIME_GTC,
+                "type_filling": mt5.ORDER_FILLING_IOC
+            }
+            result = mt5.order_send(request)
+            if result.retcode != mt5.TRADE_RETCODE_DONE:
+                logging.error(f"Close position failed for {symbol}, retcode={result.retcode}")
+            else:
+                logging.info(f"Position closed successfully for {symbol}")
 
-        }
-        result = mt5.order_send(request)
-        if result.retcode != mt5.TRADE_RETCODE_DONE:
-            logging.error(f"Close position failed for {symbol}, retcode={result.retcode}")
-        else:
-            logging.info(f"Position closed successfully for {symbol}")
+
+def get_open_positions_count(symbol):
+    positions = mt5.positions_get(symbol=symbol)
+    if positions is None:
+        return 0
+    return len(positions)
 
 
 # Example of running the strategy
@@ -156,40 +165,26 @@ if __name__ == "__main__":
             logging.info(f"Running strategies for {symbol}")
 
             # Fetch data
-            df = get_data(symbol, mt5.TIMEFRAME_M1, 100)
+            df = get_data(symbol, mt5.TIMEFRAME_H1, 100)
 
-            # Check and execute Moving Average Crossover Strategy
-            signal = moving_average_crossover(df)
-            if signal:
-                # close_all_positions(symbol)
-                create_order(symbol, lot_size, signal)
+            # Check the number of open positions for the symbol
+            open_positions_count = get_open_positions_count(symbol)
+            logging.info(f"Number of open positions for {symbol}: {open_positions_count}")
 
-            # Check and execute RSI Strategy
-            signal = rsi_strategy(df)
-            if signal:
-                # close_all_positions(symbol)
-                create_order(symbol, lot_size, signal)
+            if open_positions_count < max_open_trades_per_symbol:
+                # Apply strategies
+                for strategy in [moving_average_crossover, rsi_strategy, macd_strategy, bollinger_bands_strategy,
+                                 breakout_strategy]:
+                    signal = strategy(df)
+                    if signal:
+                        create_order(symbol, lot_size, signal)
+                        break  # Stop after the first valid signal to avoid multiple orders in one loop
 
-            # Check and execute MACD Strategy
-            signal = macd_strategy(df)
-            if signal:
-                # close_all_positions(symbol)
-                create_order(symbol, lot_size, signal)
-
-            # Check and execute Bollinger Bands Strategy
-            signal = bollinger_bands_strategy(df)
-            if signal:
-                # close_all_positions(symbol)
-                create_order(symbol, lot_size, signal)
-
-            # Check and execute Breakout Strategy
-            signal = breakout_strategy(df)
-            if signal:
-                # close_all_positions(symbol)
-                create_order(symbol, lot_size, signal)
+            # Check and close profitable positions
+            close_profitable_positions(symbol)
 
         # Wait for the next iteration
-        time.sleep(60)  # Adjust as needed
+        time.sleep(3600)  # Adjust as needed
 
     # Shutdown MT5 connection
     mt5.shutdown()
