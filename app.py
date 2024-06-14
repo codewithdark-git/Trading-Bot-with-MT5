@@ -37,7 +37,7 @@ else:
 # Define the symbols to trade
 symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm"]
 lot_size = 0.1
-max_open_trades_per_symbol = 3
+max_open_trades_per_symbol = 2
 profile_in_usd = 10
 
 
@@ -173,7 +173,7 @@ if __name__ == "__main__":
             logging.info(f"Running strategies for {symbol}")
 
             # Fetch data
-            df = get_data(symbol, mt5.TIMEFRAME_M2, 100)
+            df = get_data(symbol, mt5.TIMEFRAME_M1, 100)
 
             # Check the number of open positions for the symbol
             open_positions_count = get_open_positions_count(symbol)
@@ -184,9 +184,10 @@ if __name__ == "__main__":
                 # for strategy in [moving_average_crossover, rsi_strategy, macd_strategy, bollinger_bands_strategy,
                 #                  breakout_strategy]:
                 signal = combined_strategy(df)
-                if signal:
-                        create_order(symbol, lot_size, signal)
-                        break  # Stop after the first valid signal to avoid multiple orders in one loop
+                if signal or moving_average_crossover(df):
+                    create_order(symbol, lot_size, signal)
+
+                    break  # Stop after the first valid signal to avoid multiple orders in one loop
 
             # Check and close profitable positions
             close_profitable_positions(symbol)
