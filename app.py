@@ -173,7 +173,7 @@ if __name__ == "__main__":
             logging.info(f"Running strategies for {symbol}")
 
             # Fetch data
-            df = get_data(symbol, mt5.TIMEFRAME_D1, 100)
+            df = get_data(symbol, mt5.TIMEFRAME_H1, 100)
 
             # Check the number of open positions for the symbol
             open_positions_count = get_open_positions_count(symbol)
@@ -187,8 +187,16 @@ if __name__ == "__main__":
 
                 if signal:
                     create_order(symbol, lot_size, signal)
+                elif rsi_strategy(df):
+                    create_order(symbol, lot_size, signal)
+                elif breakout_strategy(df):
+                    create_order(symbol, lot_size, signal)
+                elif bollinger_bands_strategy(df):
+                    create_order(symbol, lot_size, signal)
                 elif moving_average_crossover(df):
                     create_order(symbol, lot_size, signal)
+
+
 
                     break  # Stop after the first valid signal to avoid multiple orders in one loop
 
