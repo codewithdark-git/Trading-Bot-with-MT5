@@ -4787,3 +4787,309 @@
 2024-06-18 21:00:22,040:INFO:Number of open positions for EURUSDm: 2
 2024-06-18 21:00:22,040:INFO:Running strategies for BTCUSDm
 2024-06-18 21:00:22,052:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:01:22,109:INFO:Running strategies for EURUSDm
+2024-06-18 21:01:22,118:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:01:22,120:INFO:Running strategies for BTCUSDm
+2024-06-18 21:01:22,125:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:02:22,268:INFO:Running strategies for EURUSDm
+2024-06-18 21:02:22,275:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:02:22,275:INFO:Running strategies for BTCUSDm
+2024-06-18 21:02:22,279:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:03:22,366:INFO:Running strategies for EURUSDm
+2024-06-18 21:03:22,369:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:03:22,369:INFO:Running strategies for BTCUSDm
+2024-06-18 21:03:22,376:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:03:38,048:INFO:Order sent successfully for BTCUSDm
+2024-06-18 21:03:38,049:INFO:Running strategies for XAUUSDm
+2024-06-18 21:03:38,163:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:03:38,163:INFO:Running strategies for BTCJPYm
+2024-06-18 21:03:38,209:INFO:Number of open positions for BTCJPYm: 1
+2024-06-18 21:03:51,909:INFO:Order sent successfully for BTCJPYm
+2024-06-18 21:04:51,913:INFO:Running strategies for EURUSDm
+2024-06-18 21:04:51,922:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:04:51,924:INFO:Running strategies for BTCUSDm
+2024-06-18 21:04:51,927:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:04:51,927:INFO:Running strategies for XAUUSDm
+2024-06-18 21:04:51,939:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:04:51,940:INFO:Running strategies for BTCJPYm
+2024-06-18 21:04:51,942:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:05:51,946:INFO:Running strategies for EURUSDm
+2024-06-18 21:05:51,954:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:05:51,954:INFO:Running strategies for BTCUSDm
+2024-06-18 21:05:51,959:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:06:12,889:INFO:Position closed successfully for BTCUSDm
+2024-06-18 21:06:12,889:INFO:Running strategies for XAUUSDm
+2024-06-18 21:06:12,893:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:06:12,893:INFO:Running strategies for BTCJPYm
+2024-06-18 21:06:12,898:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:06:16,173:INFO:Position closed successfully for BTCJPYm
+2024-06-18 21:07:16,181:INFO:Running strategies for EURUSDm
+2024-06-18 21:07:16,181:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:07:16,187:INFO:Running strategies for BTCUSDm
+2024-06-18 21:07:16,192:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:08:16,236:INFO:Running strategies for EURUSDm
+2024-06-18 21:08:16,238:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:08:16,238:INFO:Running strategies for BTCUSDm
+2024-06-18 21:08:16,246:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:09:16,301:INFO:Running strategies for EURUSDm
+2024-06-18 21:09:16,305:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:09:16,305:INFO:Running strategies for BTCUSDm
+2024-06-18 21:09:16,310:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:10:16,360:INFO:Running strategies for EURUSDm
+2024-06-18 21:10:16,376:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:10:16,378:INFO:Running strategies for BTCUSDm
+2024-06-18 21:10:16,394:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:11:16,475:INFO:Running strategies for EURUSDm
+2024-06-18 21:11:16,486:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:11:16,486:INFO:Running strategies for BTCUSDm
+2024-06-18 21:11:16,503:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:12:16,573:INFO:Running strategies for EURUSDm
+2024-06-18 21:12:16,576:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:12:16,582:INFO:Running strategies for BTCUSDm
+2024-06-18 21:12:16,586:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:13:16,638:INFO:Running strategies for EURUSDm
+2024-06-18 21:13:16,651:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:13:16,651:INFO:Running strategies for BTCUSDm
+2024-06-18 21:13:16,656:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:14:16,814:INFO:Running strategies for EURUSDm
+2024-06-18 21:14:16,819:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:14:16,819:INFO:Running strategies for BTCUSDm
+2024-06-18 21:14:16,821:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:15:16,890:INFO:Running strategies for EURUSDm
+2024-06-18 21:15:16,903:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:15:16,905:INFO:Running strategies for BTCUSDm
+2024-06-18 21:15:16,914:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:16:17,121:INFO:Running strategies for EURUSDm
+2024-06-18 21:16:17,130:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:16:17,134:INFO:Running strategies for BTCUSDm
+2024-06-18 21:16:17,137:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:17:17,271:INFO:Running strategies for EURUSDm
+2024-06-18 21:17:17,273:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:17:17,276:INFO:Running strategies for BTCUSDm
+2024-06-18 21:17:17,277:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:18:17,344:INFO:Running strategies for EURUSDm
+2024-06-18 21:18:17,344:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:18:17,344:INFO:Running strategies for BTCUSDm
+2024-06-18 21:18:17,344:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:19:17,396:INFO:Running strategies for EURUSDm
+2024-06-18 21:19:17,412:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:19:17,412:INFO:Running strategies for BTCUSDm
+2024-06-18 21:19:17,430:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:19:17,875:INFO:Order sent successfully for BTCUSDm
+2024-06-18 21:19:17,876:INFO:Running strategies for XAUUSDm
+2024-06-18 21:19:17,889:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:19:17,889:INFO:Running strategies for BTCJPYm
+2024-06-18 21:19:17,905:INFO:Number of open positions for BTCJPYm: 1
+2024-06-18 21:19:18,702:INFO:Order sent successfully for BTCJPYm
+2024-06-18 21:20:18,707:INFO:Running strategies for EURUSDm
+2024-06-18 21:20:18,710:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:20:18,710:INFO:Running strategies for BTCUSDm
+2024-06-18 21:20:18,715:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:20:18,715:INFO:Running strategies for XAUUSDm
+2024-06-18 21:20:18,715:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:20:18,715:INFO:Running strategies for BTCJPYm
+2024-06-18 21:20:18,715:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:21:18,736:INFO:Running strategies for EURUSDm
+2024-06-18 21:21:18,736:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:21:18,736:INFO:Running strategies for BTCUSDm
+2024-06-18 21:21:18,744:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:21:18,744:INFO:Running strategies for XAUUSDm
+2024-06-18 21:21:18,747:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:21:18,747:INFO:Running strategies for BTCJPYm
+2024-06-18 21:21:18,751:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:22:18,754:INFO:Running strategies for EURUSDm
+2024-06-18 21:22:18,756:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:22:18,756:INFO:Running strategies for BTCUSDm
+2024-06-18 21:22:18,762:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:22:18,762:INFO:Running strategies for XAUUSDm
+2024-06-18 21:22:18,768:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:22:18,768:INFO:Running strategies for BTCJPYm
+2024-06-18 21:22:18,771:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:23:18,776:INFO:Running strategies for EURUSDm
+2024-06-18 21:23:18,776:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:23:18,776:INFO:Running strategies for BTCUSDm
+2024-06-18 21:23:18,784:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:23:18,784:INFO:Running strategies for XAUUSDm
+2024-06-18 21:23:18,784:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:23:18,784:INFO:Running strategies for BTCJPYm
+2024-06-18 21:23:18,784:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:24:18,792:INFO:Running strategies for EURUSDm
+2024-06-18 21:24:18,797:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:24:18,797:INFO:Running strategies for BTCUSDm
+2024-06-18 21:24:18,801:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:24:18,801:INFO:Running strategies for XAUUSDm
+2024-06-18 21:24:18,801:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:24:18,801:INFO:Running strategies for BTCJPYm
+2024-06-18 21:24:18,810:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:25:18,818:INFO:Running strategies for EURUSDm
+2024-06-18 21:25:18,818:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:25:18,818:INFO:Running strategies for BTCUSDm
+2024-06-18 21:25:18,826:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:25:18,826:INFO:Running strategies for XAUUSDm
+2024-06-18 21:25:18,826:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:25:18,826:INFO:Running strategies for BTCJPYm
+2024-06-18 21:25:18,834:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:26:18,849:INFO:Running strategies for EURUSDm
+2024-06-18 21:26:18,849:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:26:18,849:INFO:Running strategies for BTCUSDm
+2024-06-18 21:26:18,857:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:26:18,857:INFO:Running strategies for XAUUSDm
+2024-06-18 21:26:18,857:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:26:18,857:INFO:Running strategies for BTCJPYm
+2024-06-18 21:26:18,857:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:27:18,875:INFO:Running strategies for EURUSDm
+2024-06-18 21:27:18,876:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:27:18,876:INFO:Running strategies for BTCUSDm
+2024-06-18 21:27:18,882:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:27:18,882:INFO:Running strategies for XAUUSDm
+2024-06-18 21:27:18,882:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:27:18,882:INFO:Running strategies for BTCJPYm
+2024-06-18 21:27:18,882:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:28:18,892:INFO:Running strategies for EURUSDm
+2024-06-18 21:28:18,892:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:28:18,892:INFO:Running strategies for BTCUSDm
+2024-06-18 21:28:18,892:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:28:18,900:INFO:Running strategies for XAUUSDm
+2024-06-18 21:28:18,900:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:28:18,900:INFO:Running strategies for BTCJPYm
+2024-06-18 21:28:18,900:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:40:24,286:INFO:Running strategies for EURUSDm
+2024-06-18 21:40:24,286:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:40:24,286:INFO:Running strategies for BTCUSDm
+2024-06-18 21:40:24,286:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:40:24,286:INFO:Running strategies for XAUUSDm
+2024-06-18 21:40:24,286:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:40:24,286:INFO:Running strategies for BTCJPYm
+2024-06-18 21:40:24,286:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:41:24,290:INFO:Running strategies for EURUSDm
+2024-06-18 21:41:24,291:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:41:24,291:INFO:Running strategies for BTCUSDm
+2024-06-18 21:41:24,294:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:41:42,270:INFO:Position closed successfully for BTCUSDm
+2024-06-18 21:41:42,270:INFO:Running strategies for XAUUSDm
+2024-06-18 21:41:42,286:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:41:42,293:INFO:Running strategies for BTCJPYm
+2024-06-18 21:41:42,317:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:41:42,571:INFO:Position closed successfully for BTCJPYm
+2024-06-18 21:42:42,577:INFO:Running strategies for EURUSDm
+2024-06-18 21:42:42,593:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:42:42,600:INFO:Running strategies for BTCUSDm
+2024-06-18 21:42:42,613:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:43:42,729:INFO:Running strategies for EURUSDm
+2024-06-18 21:43:42,729:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:43:42,729:INFO:Running strategies for BTCUSDm
+2024-06-18 21:43:42,740:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:44:42,831:INFO:Running strategies for EURUSDm
+2024-06-18 21:44:42,839:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:44:42,839:INFO:Running strategies for BTCUSDm
+2024-06-18 21:44:42,847:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:45:42,964:INFO:Running strategies for EURUSDm
+2024-06-18 21:45:42,976:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:45:42,977:INFO:Running strategies for BTCUSDm
+2024-06-18 21:45:42,981:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:46:43,087:INFO:Running strategies for EURUSDm
+2024-06-18 21:46:43,136:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:46:43,136:INFO:Running strategies for BTCUSDm
+2024-06-18 21:46:43,144:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:47:43,256:INFO:Running strategies for EURUSDm
+2024-06-18 21:47:43,264:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:47:43,264:INFO:Running strategies for BTCUSDm
+2024-06-18 21:47:43,264:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:48:43,339:INFO:Running strategies for EURUSDm
+2024-06-18 21:48:43,352:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:48:43,356:INFO:Running strategies for BTCUSDm
+2024-06-18 21:48:43,364:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:49:43,521:INFO:Running strategies for EURUSDm
+2024-06-18 21:49:43,526:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:49:43,526:INFO:Running strategies for BTCUSDm
+2024-06-18 21:49:43,530:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:49:43,809:INFO:Order sent successfully for BTCUSDm
+2024-06-18 21:49:43,809:INFO:Running strategies for XAUUSDm
+2024-06-18 21:49:43,834:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:49:43,834:INFO:Running strategies for BTCJPYm
+2024-06-18 21:49:43,900:INFO:Number of open positions for BTCJPYm: 1
+2024-06-18 21:49:44,103:INFO:Order sent successfully for BTCJPYm
+2024-06-18 21:50:44,105:INFO:Running strategies for EURUSDm
+2024-06-18 21:50:44,106:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:50:44,106:INFO:Running strategies for BTCUSDm
+2024-06-18 21:50:44,106:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:50:44,106:INFO:Running strategies for XAUUSDm
+2024-06-18 21:50:44,113:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:50:44,113:INFO:Running strategies for BTCJPYm
+2024-06-18 21:50:44,121:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:51:44,134:INFO:Running strategies for EURUSDm
+2024-06-18 21:51:44,134:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:51:44,134:INFO:Running strategies for BTCUSDm
+2024-06-18 21:51:44,142:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:51:44,142:INFO:Running strategies for XAUUSDm
+2024-06-18 21:51:44,147:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:51:44,147:INFO:Running strategies for BTCJPYm
+2024-06-18 21:51:44,147:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:52:44,156:INFO:Running strategies for EURUSDm
+2024-06-18 21:52:44,158:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:52:44,159:INFO:Running strategies for BTCUSDm
+2024-06-18 21:52:44,162:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:52:44,162:INFO:Running strategies for XAUUSDm
+2024-06-18 21:52:44,165:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:52:44,165:INFO:Running strategies for BTCJPYm
+2024-06-18 21:52:44,169:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:53:44,172:INFO:Running strategies for EURUSDm
+2024-06-18 21:53:44,175:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:53:44,175:INFO:Running strategies for BTCUSDm
+2024-06-18 21:53:44,180:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:53:44,180:INFO:Running strategies for XAUUSDm
+2024-06-18 21:53:44,188:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:53:44,188:INFO:Running strategies for BTCJPYm
+2024-06-18 21:53:44,197:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:54:44,212:INFO:Running strategies for EURUSDm
+2024-06-18 21:54:44,212:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:54:44,220:INFO:Running strategies for BTCUSDm
+2024-06-18 21:54:44,229:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 21:54:44,901:INFO:Position closed successfully for BTCUSDm
+2024-06-18 21:54:44,901:INFO:Running strategies for XAUUSDm
+2024-06-18 21:54:44,909:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 21:54:44,914:INFO:Running strategies for BTCJPYm
+2024-06-18 21:54:44,918:INFO:Number of open positions for BTCJPYm: 2
+2024-06-18 21:54:45,422:INFO:Position closed successfully for BTCJPYm
+2024-06-18 21:55:45,437:INFO:Running strategies for EURUSDm
+2024-06-18 21:55:45,437:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:55:45,437:INFO:Running strategies for BTCUSDm
+2024-06-18 21:55:45,449:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:56:45,587:INFO:Running strategies for EURUSDm
+2024-06-18 21:56:45,592:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:56:45,592:INFO:Running strategies for BTCUSDm
+2024-06-18 21:56:45,596:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:57:45,700:INFO:Running strategies for EURUSDm
+2024-06-18 21:57:45,700:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:57:45,700:INFO:Running strategies for BTCUSDm
+2024-06-18 21:57:45,718:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:58:45,819:INFO:Running strategies for EURUSDm
+2024-06-18 21:58:45,819:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:58:45,819:INFO:Running strategies for BTCUSDm
+2024-06-18 21:58:45,827:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 21:59:45,918:INFO:Running strategies for EURUSDm
+2024-06-18 21:59:45,921:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 21:59:45,921:INFO:Running strategies for BTCUSDm
+2024-06-18 21:59:45,921:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 22:00:45,974:INFO:Running strategies for EURUSDm
+2024-06-18 22:00:45,983:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 22:00:45,983:INFO:Running strategies for BTCUSDm
+2024-06-18 22:00:45,983:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 22:01:46,089:INFO:Running strategies for EURUSDm
+2024-06-18 22:01:46,109:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 22:01:46,109:INFO:Running strategies for BTCUSDm
+2024-06-18 22:01:46,122:INFO:Number of open positions for BTCUSDm: 1
+2024-06-18 22:01:47,638:INFO:Order sent successfully for BTCUSDm
+2024-06-18 22:01:47,638:INFO:Running strategies for XAUUSDm
+2024-06-18 22:01:47,650:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 22:01:47,650:INFO:Running strategies for BTCJPYm
+2024-06-18 22:01:47,663:INFO:Number of open positions for BTCJPYm: 1
+2024-06-18 22:01:47,888:INFO:Order sent successfully for BTCJPYm
+2024-06-18 22:02:47,892:INFO:Running strategies for EURUSDm
+2024-06-18 22:02:47,899:INFO:Number of open positions for EURUSDm: 2
+2024-06-18 22:02:47,900:INFO:Running strategies for BTCUSDm
+2024-06-18 22:02:47,906:INFO:Number of open positions for BTCUSDm: 2
+2024-06-18 22:02:47,907:INFO:Running strategies for XAUUSDm
+2024-06-18 22:02:47,912:INFO:Number of open positions for XAUUSDm: 2
+2024-06-18 22:02:47,913:INFO:Running strategies for BTCJPYm
+2024-06-18 22:02:47,917:INFO:Number of open positions for BTCJPYm: 2
