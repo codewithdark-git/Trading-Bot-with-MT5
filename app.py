@@ -245,7 +245,7 @@ if __name__ == "__main__":
 
             if open_positions_count < max_open_trades_per_symbol:
                 # Apply strategies
-                signal = combined_strategy(df)
+                signal = rsi_strategy(df)
 
                 if signal:
                     create_order(symbol, lot_size, signal)
