@@ -3,7 +3,6 @@ import MetaTrader5 as mt5
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-
 import logging
 
 # Set up logging
@@ -22,7 +21,9 @@ server = "Exness-MT5Trial"
 
 authorized = mt5.login(account_number, password, server)
 if not authorized:
-    print("Failed to connect at account #{}, error code: {}".format(account_number, mt5.last_error()))
+    logging.error("Failed to connect at account #{}, error code: {}".format(account_number, mt5.last_error()))
+    mt5.shutdown()
+    exit()
 else:
     print("Connected to account #{}".format(account_number))
 
@@ -33,9 +34,8 @@ if not terminal_info.trade_allowed:
 else:
     logging.info("Auto trading is enabled in MetaTrader 5 terminal")
 
-
 # Define the symbols to trade
-symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm"]
+symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm", "BTCJPYm"]
 lot_size = 0.1
 max_open_trades_per_symbol = 2
 profile_in_usd = 10
@@ -102,6 +102,14 @@ def breakout_strategy(df):
     return None
 
 
+def combined_strategy(df):
+    rsi_signal = rsi_strategy(df)
+    bb_signal = bollinger_bands_strategy(df)
+    if rsi_signal == bb_signal and rsi_signal is not None:
+        return rsi_signal
+    return None
+
+
 def create_order(symbol, lot_size, action):
     price = mt5.symbol_info_tick(symbol).ask if action == "buy" else mt5.symbol_info_tick(symbol).bid
     order_type = mt5.ORDER_TYPE_BUY if action == "buy" else mt5.ORDER_TYPE_SELL
@@ -122,13 +130,6 @@ def create_order(symbol, lot_size, action):
         logging.error(f"Order send failed for {symbol}, retcode={result.retcode}, comment={result.comment}")
     else:
         logging.info(f"Order sent successfully for {symbol}")
-
-def combined_strategy(df):
-    rsi_signal = rsi_strategy(df)
-    bb_signal = bollinger_bands_strategy(df)
-    if rsi_signal == bb_signal and rsi_signal is not None:
-        return rsi_signal
-    return None
 
 
 def close_profitable_positions(symbol):
@@ -166,6 +167,69 @@ def get_open_positions_count(symbol):
     return len(positions)
 
 
+# New strategy implementation
+def ema(series, period):
+    return series.ewm(span=period, adjust=False).mean()
+
+
+def rng_size(df, qty, n):
+    avrng = ema(abs(df['close'] - df['close'].shift(1)), n)
+    wper = (n * 2) - 1
+    AC = ema(avrng, wper) * qty
+    return AC
+
+
+def rng_filt(df, rng_, n):
+    r = rng_
+    rfilt = [df['close'].iloc[0], df['close'].iloc[0]]
+    hi_band = np.zeros(len(df))
+    lo_band = np.zeros(len(df))
+    filt = np.zeros(len(df))
+
+    for i in range(1, len(df)):
+        if df['close'].iloc[i] - r.iloc[i] > rfilt[1]:
+            rfilt[0] = df['close'].iloc[i] - r.iloc[i]
+        if df['close'].iloc[i] + r.iloc[i] < rfilt[1]:
+            rfilt[0] = df['close'].iloc[i] + r.iloc[i]
+        rfilt[1] = rfilt[0]
+        hi_band[i] = rfilt[0] + r.iloc[i]
+        lo_band[i] = rfilt[0] - r.iloc[i]
+        filt[i] = rfilt[0]
+
+    return hi_band, lo_band, filt
+
+
+def new_strategy(df):
+    rng_per = 20
+    rng_qty = 3.5
+    df['rng_size'] = rng_size(df, rng_qty, rng_per)
+    df['hi_band'], df['lo_band'], df['filt'] = rng_filt(df, df['rng_size'], rng_per)
+    df['fdir'] = np.where(df['filt'] > df['filt'].shift(1), 1, np.where(df['filt'] < df['filt'].shift(1), -1, 0))
+    df['upward'] = np.where(df['fdir'] == 1, 1, 0)
+    df['downward'] = np.where(df['fdir'] == -1, 1, 0)
+
+    df['longCond'] = np.where(
+        (df['close'] > df['filt']) & (df['close'] > df['close'].shift(1)) & (df['upward'] > 0) |
+        (df['close'] > df['filt']) & (df['close'] < df['close'].shift(1)) & (df['upward'] > 0),
+        True, False)
+
+    df['shortCond'] = np.where(
+        (df['close'] < df['filt']) & (df['close'] < df['close'].shift(1)) & (df['downward'] > 0) |
+        (df['close'] < df['filt']) & (df['close'] > df['close'].shift(1)) & (df['downward'] > 0),
+        True, False)
+
+    df['CondIni'] = 0
+    df['CondIni'] = np.where(df['longCond'], 1, np.where(df['shortCond'], -1, df['CondIni'].shift(1)))
+    df['longCondition'] = df['longCond'] & (df['CondIni'].shift(1) == -1)
+    df['shortCondition'] = df['shortCond'] & (df['CondIni'].shift(1) == 1)
+
+    if df['longCondition'].iloc[-1]:
+        return "buy"
+    elif df['shortCondition'].iloc[-1]:
+        return "sell"
+    return None
+
+
 # Example of running the strategy
 if __name__ == "__main__":
     while True:
@@ -173,7 +237,7 @@ if __name__ == "__main__":
             logging.info(f"Running strategies for {symbol}")
 
             # Fetch data
-            df = get_data(symbol, mt5.TIMEFRAME_H1, 100)
+            df = get_data(symbol, mt5.TIMEFRAME_M1, 100)
 
             # Check the number of open positions for the symbol
             open_positions_count = get_open_positions_count(symbol)
@@ -181,23 +245,20 @@ if __name__ == "__main__":
 
             if open_positions_count < max_open_trades_per_symbol:
                 # Apply strategies
-                # for strategy in [moving_average_crossover, rsi_strategy, macd_strategy, bollinger_bands_strategy,
-                #                  breakout_strategy]:
                 signal = combined_strategy(df)
 
                 if signal:
                     create_order(symbol, lot_size, signal)
-                elif rsi_strategy(df):
-                    create_order(symbol, lot_size, signal)
-                elif breakout_strategy(df):
-                    create_order(symbol, lot_size, signal)
-                elif bollinger_bands_strategy(df):
-                    create_order(symbol, lot_size, signal)
-                elif moving_average_crossover(df):
-                    create_order(symbol, lot_size, signal)
-
-
-
+                else:
+                    signal = new_strategy(df)
+                    if signal:
+                        create_order(symbol, lot_size, signal)
+                    # else:
+                    #     # for strategy in [moving_average_crossover, rsi_strategy, macd_strategy,
+                    #     #                  bollinger_bands_strategy, breakout_strategy]:
+                    #     signal = moving_average_crossover(df)
+                    #     if signal:
+                    #         create_order(symbol, lot_size, signal)
                     break  # Stop after the first valid signal to avoid multiple orders in one loop
 
             # Check and close profitable positions
