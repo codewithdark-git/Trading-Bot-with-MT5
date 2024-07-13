@@ -2,8 +2,8 @@ import time
 import MetaTrader5 as mt5
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
 import logging
+import os
 
 # Set up logging
 logging.basicConfig(filename='trading_bot.log', level=logging.INFO,
@@ -15,9 +15,9 @@ if not mt5.initialize():
     mt5.shutdown()
 
 # Login to your account
-account_number = 156090030
-password = "codewithdark_E0"
-server = "Exness-MT5Trial"
+account_number = os.getenv("account_number")
+password = os.getenv("password")
+server = os.getenv("server")
 
 authorized = mt5.login(account_number, password, server)
 if not authorized:
@@ -35,18 +35,18 @@ else:
     logging.info("Auto trading is enabled in MetaTrader 5 terminal")
 
 # Define the symbols to trade
-symbols = ["EURUSDm", "BTCUSDm", "XAUUSDm", "BTCJPYm"]
+symbols = ['GBPUSD', 'XAUUSD', 'XAGUSD']
 lot_size = 0.1
 max_open_trades_per_symbol = 2
-profile_in_usd = 10
-
+profile_in_usd = 100
 
 def get_data(symbol, timeframe, num_bars):
     rates = mt5.copy_rates_from_pos(symbol, timeframe, 0, num_bars)
+    # print(rates)
     df = pd.DataFrame(rates)
+    # print(df)
     df['time'] = pd.to_datetime(df['time'], unit='s')
     return df
-
 
 def moving_average_crossover(df):
     df['fast_ma'] = df['close'].rolling(window=9).mean()
@@ -56,7 +56,6 @@ def moving_average_crossover(df):
     elif df['fast_ma'].iloc[-1] < df['slow_ma'].iloc[-1] and df['fast_ma'].iloc[-2] >= df['slow_ma'].iloc[-2]:
         return "sell"
     return None
-
 
 def rsi_strategy(df):
     delta = df['close'].diff()
@@ -70,7 +69,6 @@ def rsi_strategy(df):
         return "sell"
     return None
 
-
 def macd_strategy(df):
     df['macd'] = df['close'].ewm(span=12, adjust=False).mean() - df['close'].ewm(span=26, adjust=False).mean()
     df['signal'] = df['macd'].ewm(span=9, adjust=False).mean()
@@ -79,7 +77,6 @@ def macd_strategy(df):
     elif df['macd'].iloc[-1] < df['signal'].iloc[-1] and df['macd'].iloc[-2] >= df['signal'].iloc[-2]:
         return "sell"
     return None
-
 
 def bollinger_bands_strategy(df):
     df['middle_band'] = df['close'].rolling(window=20).mean()
@@ -91,7 +88,6 @@ def bollinger_bands_strategy(df):
         return "sell"
     return None
 
-
 def breakout_strategy(df):
     df['highest_high'] = df['high'].rolling(window=20).max()
     df['lowest_low'] = df['low'].rolling(window=20).min()
@@ -101,14 +97,12 @@ def breakout_strategy(df):
         return "sell"
     return None
 
-
 def combined_strategy(df):
     rsi_signal = rsi_strategy(df)
     bb_signal = bollinger_bands_strategy(df)
     if rsi_signal == bb_signal and rsi_signal is not None:
         return rsi_signal
     return None
-
 
 def create_order(symbol, lot_size, action):
     price = mt5.symbol_info_tick(symbol).ask if action == "buy" else mt5.symbol_info_tick(symbol).bid
@@ -131,15 +125,13 @@ def create_order(symbol, lot_size, action):
     else:
         logging.info(f"Order sent successfully for {symbol}")
 
-
 def close_profitable_positions(symbol):
     positions = mt5.positions_get(symbol=symbol)
     for pos in positions:
         profit = pos.profit
         if profit >= profile_in_usd:  # Close only profitable positions
             order_type = mt5.ORDER_TYPE_SELL if pos.type == mt5.ORDER_TYPE_BUY else mt5.ORDER_TYPE_BUY
-            price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(
-                symbol).ask
+            price = mt5.symbol_info_tick(symbol).bid if order_type == mt5.ORDER_TYPE_BUY else mt5.symbol_info_tick(symbol).ask
             request = {
                 "action": mt5.TRADE_ACTION_DEAL,
                 "symbol": pos.symbol,
@@ -159,25 +151,21 @@ def close_profitable_positions(symbol):
             else:
                 logging.info(f"Position closed successfully for {symbol}")
 
-
 def get_open_positions_count(symbol):
     positions = mt5.positions_get(symbol=symbol)
     if positions is None:
         return 0
     return len(positions)
 
-
 # New strategy implementation
 def ema(series, period):
     return series.ewm(span=period, adjust=False).mean()
-
 
 def rng_size(df, qty, n):
     avrng = ema(abs(df['close'] - df['close'].shift(1)), n)
     wper = (n * 2) - 1
     AC = ema(avrng, wper) * qty
     return AC
-
 
 def rng_filt(df, rng_, n):
     r = rng_
@@ -197,7 +185,6 @@ def rng_filt(df, rng_, n):
         filt[i] = rfilt[0]
 
     return hi_band, lo_band, filt
-
 
 def new_strategy(df):
     rng_per = 20
@@ -229,7 +216,6 @@ def new_strategy(df):
         return "sell"
     return None
 
-
 # Example of running the strategy
 if __name__ == "__main__":
     while True:
@@ -246,20 +232,16 @@ if __name__ == "__main__":
             if open_positions_count < max_open_trades_per_symbol:
                 # Apply strategies
                 signal = rsi_strategy(df)
+                signal_move = moving_average_crossover(df)
 
                 if signal:
+                    create_order(symbol, lot_size, signal)
+                elif signal_move:
                     create_order(symbol, lot_size, signal)
                 else:
                     signal = new_strategy(df)
                     if signal:
                         create_order(symbol, lot_size, signal)
-                    # else:
-                    #     # for strategy in [moving_average_crossover, rsi_strategy, macd_strategy,
-                    #     #                  bollinger_bands_strategy, breakout_strategy]:
-                    #     signal = moving_average_crossover(df)
-                    #     if signal:
-                    #         create_order(symbol, lot_size, signal)
-                    break  # Stop after the first valid signal to avoid multiple orders in one loop
 
             # Check and close profitable positions
             close_profitable_positions(symbol)
